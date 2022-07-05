@@ -9,5 +9,3 @@ The app keeps track of the quantity of each ingredient as well as the ingredient
 
 At a later stage we will add a recipe system based on the current ingredients.
 
-At this moment we are using this image as a basic layout for the app:
-http://www.koolmaxgroup.com/blog/wp-content/uploads/2016/01/Smart-Fridge.jpg
