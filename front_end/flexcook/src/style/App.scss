@@ -1,0 +1,10 @@
+@use "./base/reset";
+@use "./base/extends";
+@use "./base/variables" as *;
+@use "./base/fonts" as *;
+@use "./base/mixins" as *;
+@use "./base/icons.scss";
+
+body {
+  background-color: black;
+}
