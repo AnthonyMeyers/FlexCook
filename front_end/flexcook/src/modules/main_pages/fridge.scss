@@ -4,4 +4,49 @@
     color: white;
     background-color: gray;
   }
+  &__list {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+.fridgeitem {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  border-radius: 15px;
+  background: rgb(242, 239, 239);
+  background: linear-gradient(
+    180deg,
+    rgba(242, 239, 239, 0.7371323529411764) 30%,
+    rgba(120, 118, 118, 0.5578606442577031) 100%
+  );
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  &__texture {
+    display: block;
+    position: absolute;
+    width: 75%;
+    aspect-ratio: 4/3;
+    top: 0;
+    left: 25%;
+    &:after {
+      content: "\eabe";
+      font-family: "icomoon";
+      font-size: 30px;
+    }
+  }
+  &__title {
+    text-align: center;
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+  &__checkbox {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }

@@ -5,4 +5,5 @@ export const testobject = [
   { id: 4, name: "Banana" },
   { id: 5, name: "Escargot" },
   { id: 6, name: "Tomato" },
+  { id: 7, name: "Chocolat" },
 ];

@@ -9,9 +9,9 @@ function App() {
     <>
       <div className="fullpage">
         <Header />
-        <div className="container">
-          <Routing />
-        </div>
+
+        <Routing />
+
         <Footer />
       </div>
     </>
