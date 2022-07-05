@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?adw2gf');
-  src:  url('fonts/icomoon.eot?adw2gf#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?adw2gf') format('truetype'),
-    url('fonts/icomoon.woff?adw2gf') format('woff'),
-    url('fonts/icomoon.svg?adw2gf#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?j0vm7o');
+  src:  url('fonts/icomoon.eot?j0vm7o#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?j0vm7o') format('truetype'),
+    url('fonts/icomoon.woff?j0vm7o') format('woff'),
+    url('fonts/icomoon.svg?j0vm7o#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-pen-angled:before {
+  content: "\e900";
+}
 .icon-bullhorn:before {
   content: "\e91a";
 }
@@ -76,6 +79,6 @@
 .icon-list:before {
   content: "\e9ba";
 }
-.icon-pen-angled:before {
-  content: "\e900";
+.icon-home:before {
+  content: "\e901";
 }

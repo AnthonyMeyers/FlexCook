@@ -4,16 +4,16 @@
 @use "./base/fonts" as *;
 @use "./base/mixins" as *;
 @use "./base/icons.scss";
-
+@import "../modules/main_components/footer.scss";
+@import "../modules/main_components/header.scss";
 body {
-}
-
-div {
-  background-color: whitesmoke;
-  height: calc(100vh - 20px);
-  border-radius: 20px;
+  font-family: "Times New Roman", Times, serif;
+  background-color: lightgray;
 }
 
 p {
   color: black;
+}
+
+.container {
 }

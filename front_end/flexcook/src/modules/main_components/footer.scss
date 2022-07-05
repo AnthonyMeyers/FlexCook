@@ -1,0 +1,32 @@
+.footer {
+  position: fixed;
+  padding: 5px 35px;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  background: rgb(66, 65, 65);
+  background: linear-gradient(
+    180deg,
+    rgba(66, 65, 65, 1) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  &__align {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    &__title {
+      font-size: 20px;
+    }
+    &__button {
+      &__text {
+        display: none;
+      }
+      &:after {
+        content: "\e9bd";
+        font-family: "icomoon";
+        font-size: 25px;
+      }
+    }
+  }
+}
