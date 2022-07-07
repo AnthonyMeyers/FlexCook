@@ -54,20 +54,29 @@
 }
 
 .fridgemenu {
-  position: absolute;
+  position: fixed;
   top: 87px;
-  left: 0;
+  left: -250px;
   color: white;
   height: calc(
     100vh - 87px - 45px
   ); //take the viewheight, reduce this by header & footer height
   background-color: black;
-  width: 0;
+  width: 250px;
   z-index: 1;
   overflow-x: hidden;
   transition: 1s;
+  &__title {
+    padding: 8px 8px 8px 32px;
+  }
+  &__select {
+    padding: 8px 8px 8px 32px;
+    &:hover {
+      background-color: none;
+    }
+  }
 }
 
 .open {
-  width: 75%;
+  left: 0;
 }
