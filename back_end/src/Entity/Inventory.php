@@ -5,9 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\InventoryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *  normalizationContext={"groups"={"Inventory:read"}},
+ *  denormalizationContext={"groups"={"Inventory:write"}}
+ * )
  * @ORM\Entity(repositoryClass=InventoryRepository::class)
  */
 class Inventory
@@ -16,23 +20,27 @@ class Inventory
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"Inventory:read"})
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="inventories")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"Inventory:read", "Inventory:write"})
      */
     private $usrInv;
 
     /**
      * @ORM\ManyToOne(targetEntity=Ingredient::class, inversedBy="inventories")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"Inventory:read", "Inventory:write"})
      */
     private $igtInv;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"Inventory:read", "Inventory:write"})
      */
     private $invCnt;
 

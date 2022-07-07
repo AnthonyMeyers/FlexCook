@@ -7,9 +7,13 @@ use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *  normalizationContext={"groups"={"Ingredient:read"}},
+ *  denormalizationContext={"groups"={"Ingredient:write"}}
+ * )
  * @ORM\Entity(repositoryClass=IngredientRepository::class)
  */
 class Ingredient
@@ -18,26 +22,32 @@ class Ingredient
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("Ingredient:read")
+     * @Groups({"Inventory:read", "Inventory:write"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Groups({"Ingredient:read", "Ingredient:write"})
      */
     private $igtName;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"Ingredient:read", "Ingredient:write"})
      */
     private $igtEng;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"Ingredient:read", "Ingredient:write"})
      */
     private $igtPtn;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"Ingredient:read", "Ingredient:write"})
      */
     private $igtFts;
 
