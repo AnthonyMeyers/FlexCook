@@ -56,16 +56,16 @@
 .fridgemenu {
   position: fixed;
   top: 87px;
-  left: -250px;
+  left: -100%;
   color: white;
   height: calc(
     100vh - 87px - 45px
   ); //take the viewheight, reduce this by header & footer height
   background-color: black;
-  width: 250px;
+  width: 100%;
   z-index: 1;
   overflow-x: hidden;
-  transition: 1s;
+  transition: 2s;
   &__title {
     padding: 8px 8px 8px 32px;
   }
@@ -74,9 +74,53 @@
     &:hover {
       background-color: none;
     }
+    max-width: 250px;
   }
 }
 
 .open {
   left: 0;
+}
+
+@media screen and(min-width: 500px) {
+  .fridgemenu {
+    width: 250px;
+    transition: 2s;
+  }
+
+  .fridge {
+    &-right {
+      margin-left: 250px;
+      animation-name: moveright;
+      animation-duration: 2s;
+    }
+    &-left {
+      margin-left: 0px;
+      animation-name: moveleft;
+      animation-duration: 2s;
+    }
+  }
+}
+
+@keyframes moveright {
+  0% {
+    margin-left: 0px;
+  }
+  25% {
+    margin-left: 0px;
+  }
+
+  100% {
+    margin-left: 250px;
+  }
+}
+
+@keyframes moveleft {
+  0% {
+    margin-left: 250px;
+  }
+
+  100% {
+    margin-left: 0px;
+  }
 }

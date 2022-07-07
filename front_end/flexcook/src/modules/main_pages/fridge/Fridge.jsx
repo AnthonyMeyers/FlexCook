@@ -16,8 +16,10 @@ const Fridge = () => {
   return (
     <>
       <FridgeMenu className={activeMenu ? "fridgemenu open" : "fridgemenu"} />
-      <section className="fridge">
-        <h3 className="fridge__toptitle">Available items</h3>
+      <h3 className="fridge__toptitle">Available items</h3>
+      <section
+        className={activeMenu ? "fridge fridge-right" : "fridge fridge-left"}
+      >
         {ingredientData && ingredientData.length > 0 && (
           <div className="container">
             <ul className="fridge__list">
