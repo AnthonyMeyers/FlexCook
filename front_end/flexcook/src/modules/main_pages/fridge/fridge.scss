@@ -1,8 +1,10 @@
 .fridge {
+  position: relative;
   &__toptitle {
     text-align: center;
     color: white;
     background-color: gray;
+    height: 22px;
   }
   &__list {
     padding: 10px;
@@ -49,4 +51,23 @@
     left: 0;
     top: 0;
   }
+}
+
+.fridgemenu {
+  position: absolute;
+  top: 87px;
+  left: 0;
+  color: white;
+  height: calc(
+    100vh - 87px - 45px
+  ); //take the viewheight, reduce this by header & footer height
+  background-color: black;
+  width: 0;
+  z-index: 1;
+  overflow-x: hidden;
+  transition: 1s;
+}
+
+.open {
+  width: 75%;
 }
