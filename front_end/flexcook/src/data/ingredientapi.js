@@ -10,7 +10,14 @@ const ingredientApi = createApi({
   refetchOnFocus: true,
   endpoints: (builder) => ({
     getAllIngredients: builder.query({
-      query: () => "/",
+      query: () => "/ingredients",
+      headers: {
+        "Content-Type": "application/json",
+        accept: "application/json",
+      },
     }),
   }),
 });
+
+export default ingredientApi;
+export const { useGetAllIngredientsQuery } = ingredientApi;
