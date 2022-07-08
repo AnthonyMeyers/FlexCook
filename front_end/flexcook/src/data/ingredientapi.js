@@ -45,7 +45,7 @@ const ingredientApi = createApi({
       }),
       invalidatesTags: ["INVENTORY"],
     }),
-    //Wijzig de prioriteit van een todo
+    //Wijzig de inventory count
     updateInventoryCount: builder.mutation({
       query: ({ invId, invCount }) => ({
         url: `/inventories/${invId}`,
@@ -58,6 +58,19 @@ const ingredientApi = createApi({
       }),
       invalidatesTags: ["INVENTORY"],
     }),
+    //DELETE een contact
+    removeInventoryItem: builder.mutation({
+      query: ({ invId }) => ({
+        url: `/inventories/${id}.json`,
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        method: "DELETE",
+        body: { id: invId },
+      }),
+      invalidatesTags: ["INVENTORY"],
+    }),
   }),
 });
 
@@ -67,4 +80,5 @@ export const {
   useGetIngredientsFromUserQuery,
   useUpdateInventoryCountMutation,
   useAddToInventoryMutation,
+  useRemoveInventoryItemMutation,
 } = ingredientApi;

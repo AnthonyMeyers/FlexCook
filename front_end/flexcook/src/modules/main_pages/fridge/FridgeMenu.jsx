@@ -1,44 +1,17 @@
-import Async, { useAsync } from "react-select/async";
-import Select from "react-select";
-import {
-  useGetAllIngredientsQuery,
-  useAddToInventoryMutation,
-} from "../../../data/ingredientapi";
-import { customStylesSelect } from "../../../helpers/reactselect";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import MenuAddItem from "./MenuAddItem";
 const FridgeMenu = ({ className }) => {
-  const [newItem, setNewItem] = useState(null);
-  const [AddToInventory] = useAddToInventoryMutation();
-
-  const {
-    data: ingredientData,
-    isLoading,
-    isError,
-    isSuccess,
-  } = useGetAllIngredientsQuery();
-
-  function handleAdditemButton() {
-    if (newItem != null) {
-      AddToInventory({ userId: 4, ingredId: newItem });
-    }
-  }
+  const [showAddMenu, setShowAddMenu] = useState(false);
 
   return (
     <aside className={className}>
-      <h2 className="fridgemenu__title">Add an item</h2>
-      {ingredientData && ingredientData.length > 0 && (
-        <Select
-          styles={customStylesSelect}
-          className="fridgemenu__select"
-          onChange={(choice) => setNewItem(choice.value)}
-          options={ingredientData.map(({ id, igtName }) => ({
-            value: id,
-            label: igtName,
-          }))}
-        ></Select>
-      )}
-      <button onClick={handleAdditemButton}>Add item</button>
+      <h2
+        className="fridgemenu__title"
+        onClick={() => setShowAddMenu(!showAddMenu)}
+      >
+        Inventory options
+      </h2>
+      {showAddMenu && <MenuAddItem />}
     </aside>
   );
 };
