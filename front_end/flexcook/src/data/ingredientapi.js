@@ -28,6 +28,23 @@ const ingredientApi = createApi({
       }),
       providesTags: ["INVENTORY"],
     }),
+    //Post een inventory slot
+    addToInventory: builder.mutation({
+      query: ({ userId, ingredId }) => ({
+        url: `/inventories`,
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        method: "POST",
+        body: {
+          usrInv: userId,
+          igtInv: ingredId,
+          invCnt: 1,
+        },
+      }),
+      invalidatesTags: ["INVENTORY"],
+    }),
     //Wijzig de prioriteit van een todo
     updateInventoryCount: builder.mutation({
       query: ({ invId, invCount }) => ({
@@ -49,4 +66,5 @@ export const {
   useGetAllIngredientsQuery,
   useGetIngredientsFromUserQuery,
   useUpdateInventoryCountMutation,
+  useAddToInventoryMutation,
 } = ingredientApi;

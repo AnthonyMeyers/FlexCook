@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\InventoryRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
@@ -15,8 +16,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *  denormalizationContext={"groups"={"Inventory:write"}}
  * )
  * @ORM\Entity(repositoryClass=InventoryRepository::class)
+ * @UniqueEntity(fields={"usrInv","igtInv"}, message="You already have this ingredient in your list.")
  * @ApiFilter(SearchFilter::class, properties={"usrInv"})
  */
+
 class Inventory
 {
     /**
@@ -30,6 +33,7 @@ class Inventory
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="inventories")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"Inventory:read", "Inventory:write"})
      */
     private $usrInv;
 
