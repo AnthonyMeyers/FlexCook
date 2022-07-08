@@ -1,9 +1,10 @@
-import Select from "react-select";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Footer = ({ useActiveMenu, activeMenu }) => {
+  //Sets the button enabled / disabled temporary
   const [disableButton, setDisableButton] = useState(false);
 
+  //Activates the item menu
   function handleActivatemenuClick() {
     useActiveMenu(!activeMenu);
     setDisableButton(true);

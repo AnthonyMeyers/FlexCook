@@ -1,13 +1,17 @@
 import { useUpdateInventoryCountMutation } from "../../../data/ingredientapi";
-import { useState, useEffect } from "react";
 
-const FridgeItem = ({ name, id, count }) => {
+const FridgeItem = ({ name, id, count, useMessaging }) => {
+  //API mutation to change item counts
   const [changeCountItem] = useUpdateInventoryCountMutation();
 
-  const [error, setError] = useState(null);
-
+  //Function to add to count
   function handleAddtocountClick() {
     const status = changeCountItem({ invId: id, invCount: count + 1 });
+    status.then((resolve) => {
+      if ("error" in resolve) {
+        useMessaging("This action is not possible at the moment.");
+      }
+    });
   }
 
   return (

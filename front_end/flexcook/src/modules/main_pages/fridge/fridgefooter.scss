@@ -20,6 +20,9 @@
       font-size: 20px;
     }
     &__button {
+      &:disabled {
+        opacity: 0.5;
+      }
       &__text {
         display: none;
       }
