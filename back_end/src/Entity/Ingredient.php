@@ -30,6 +30,7 @@ class Ingredient
     /**
      * @ORM\Column(type="string", length=200)
      * @Groups({"Ingredient:read", "Ingredient:write"})
+     * @Groups({"Inventory:read", "Inventory:write"})
      */
     private $igtName;
 

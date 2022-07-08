@@ -1,17 +1,19 @@
 import FridgeItem from "./FridgeItem";
 import { useEffect, useState } from "react";
-import { useGetAllIngredientsQuery } from "../../../data/ingredientapi";
+import { useGetIngredientsFromUserQuery } from "../../../data/ingredientapi";
 import FridgeFooter from "./FridgeFooter";
 import FridgeMenu from "./FridgeMenu";
 
 const Fridge = () => {
   const [activeMenu, setActiveMenu] = useState(false);
+
   const {
     data: ingredientData,
     isLoading,
     isError,
     isSuccess,
-  } = useGetAllIngredientsQuery();
+  } = useGetIngredientsFromUserQuery(4);
+  console.log(ingredientData);
 
   return (
     <>
@@ -23,8 +25,8 @@ const Fridge = () => {
         {ingredientData && ingredientData.length > 0 && (
           <div className="container">
             <ul className="fridge__list">
-              {ingredientData.map(({ id, igtName }) => (
-                <FridgeItem key={id} name={igtName} />
+              {ingredientData.map(({ id, igtInv: { igtName }, invCnt }) => (
+                <FridgeItem key={id} id={id} name={igtName} count={invCnt} />
               ))}
             </ul>
           </div>

@@ -1,12 +1,16 @@
 api_platform:
-    formats:
-        json:     ['application/json']
-        jsonld:   ['application/ld+json']
-    patch_formats:
-        json: [ 'application/merge-patch+json' ]
-    error_formats:
-        jsonproblem: [ 'application/problem+json' ]
+    title: 'flexcook API'
+    description: 'training API for flexcook app'
+    allow_plain_identifiers: true
     mapping:
         paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        json: [ 'application/merge-patch+json' ]
     swagger:
         versions: [3]
+    defaults:
+        pagination_items_per_page: 20
+        pagination_client_enabled: true
+    collection:
+        pagination:
+            enabled_parameter_name: pagination # optional

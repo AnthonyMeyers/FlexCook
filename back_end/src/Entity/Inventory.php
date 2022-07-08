@@ -6,6 +6,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\InventoryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /**
  * @ApiResource(
@@ -13,6 +15,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *  denormalizationContext={"groups"={"Inventory:write"}}
  * )
  * @ORM\Entity(repositoryClass=InventoryRepository::class)
+ * @ApiFilter(SearchFilter::class, properties={"usrInv"})
  */
 class Inventory
 {
@@ -27,7 +30,6 @@ class Inventory
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="inventories")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"Inventory:read", "Inventory:write"})
      */
     private $usrInv;
 

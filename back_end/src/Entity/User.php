@@ -27,7 +27,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups("User:read")
-     * @Groups({"Inventory:read", "Inventory:write"})
      */
     private $id;
 
@@ -85,7 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->username;
+        return (string) ucfirst($this->username);
     }
 
     public function setUsername(string $username): self

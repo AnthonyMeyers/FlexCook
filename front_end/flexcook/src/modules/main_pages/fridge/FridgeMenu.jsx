@@ -12,7 +12,7 @@ const FridgeMenu = ({ className }) => {
   } = useGetAllIngredientsQuery();
 
   return (
-    <sidebar className={className}>
+    <aside className={className}>
       <h2 className="fridgemenu__title">Add an item</h2>
       {ingredientData && ingredientData.length > 0 && (
         <Select
@@ -24,7 +24,7 @@ const FridgeMenu = ({ className }) => {
           }))}
         ></Select>
       )}
-    </sidebar>
+    </aside>
   );
 };
 
