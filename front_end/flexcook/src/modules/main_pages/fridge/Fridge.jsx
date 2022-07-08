@@ -22,7 +22,6 @@ const Fridge = () => {
     isError,
     isSuccess,
   } = useGetIngredientsFromUserQuery(4);
-  console.log(ingredientData);
 
   return (
     <>

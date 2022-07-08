@@ -58,10 +58,10 @@ const ingredientApi = createApi({
       }),
       invalidatesTags: ["INVENTORY"],
     }),
-    //DELETE een contact
+    //DELETE een inventory item
     removeInventoryItem: builder.mutation({
       query: ({ invId }) => ({
-        url: `/inventories/${id}.json`,
+        url: `/inventories/${invId}`,
         headers: {
           "Content-Type": "application/json",
           accept: "application/json",
