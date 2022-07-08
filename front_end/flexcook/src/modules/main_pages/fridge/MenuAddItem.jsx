@@ -1,4 +1,3 @@
-import Async, { useAsync } from "react-select/async";
 import Select from "react-select";
 import {
   useGetAllIngredientsQuery,

@@ -5,10 +5,21 @@ const FridgeItem = ({ name, id, count, useMessaging }) => {
   //API mutation to change item counts
   const [changeCountItem] = useUpdateInventoryCountMutation();
 
-  //Function to add to count
-  function handleAddtocountClick() {
+  function handleCountClick(e) {
     setExecuting(true);
-    const status = changeCountItem({ invId: id, invCount: count + 1 });
+    let status;
+    //If clicked on the remove button
+    if (e.nativeEvent.target.id === "remove-item") {
+      if (count >= 0) {
+        status = changeCountItem({ invId: id, invCount: count - 1 });
+      }
+    }
+    //If did not click on remove button
+    if (e.nativeEvent.target.id !== "remove-item") {
+      status = changeCountItem({ invId: id, invCount: count + 1 });
+    }
+
+    //See if there is an error in the status
     status.then((resolve) => {
       if ("error" in resolve) {
         useMessaging("This action is not possible at the moment.");
@@ -22,11 +33,18 @@ const FridgeItem = ({ name, id, count, useMessaging }) => {
   return (
     <li
       className={executing ? "fridgeitem disabled" : "fridgeitem"}
-      onClick={handleAddtocountClick}
+      onClick={handleCountClick}
     >
       <div className="fridgeitem__texture"></div>
       <h3 className="fridgeitem__title">{name.substr(0, 8)}</h3>
       <span className="fridgeitem__counter">{count}</span>
+      <button
+        id="remove-item"
+        className="fridgeitem__button"
+        onClick={handleCountClick}
+      >
+        <span className="fridgeitem__button__text">minus</span>
+      </button>
     </li>
   );
 };

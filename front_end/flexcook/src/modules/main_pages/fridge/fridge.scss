@@ -51,6 +51,21 @@
     left: -5px;
     top: -5px;
   }
+  &__button {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    z-index: 2;
+
+    &__text {
+      display: none;
+    }
+    &:after {
+      content: "\ea0b";
+      font-family: "icomoon";
+      padding: 5px;
+    }
+  }
 }
 
 .fridgemenu {
