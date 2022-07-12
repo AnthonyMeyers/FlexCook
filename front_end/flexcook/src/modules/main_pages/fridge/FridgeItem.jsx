@@ -7,12 +7,10 @@ const FridgeItem = ({ name, id, count, useMessaging }) => {
 
   function handleCountClick(e) {
     setExecuting(true);
-    let status;
+    let status = null;
     //If clicked on the remove button
-    if (e.nativeEvent.target.id === "remove-item") {
-      if (count >= 0) {
-        status = changeCountItem({ invId: id, invCount: count - 1 });
-      }
+    if (e.nativeEvent.target.id === "remove-item" && count > 0) {
+      status = changeCountItem({ invId: id, invCount: count - 1 });
     }
     //If did not click on remove button
     if (e.nativeEvent.target.id !== "remove-item") {
@@ -20,14 +18,19 @@ const FridgeItem = ({ name, id, count, useMessaging }) => {
     }
 
     //See if there is an error in the status
-    status.then((resolve) => {
-      if ("error" in resolve) {
-        useMessaging("This action is not possible at the moment.");
-      }
-      setTimeout(() => {
-        setExecuting(false);
-      }, 600);
-    });
+    if (status) {
+      status.then((resolve) => {
+        if ("error" in resolve) {
+          useMessaging("This action is not possible at the moment.");
+        }
+        setTimeout(() => {
+          setExecuting(false);
+        }, 600);
+      });
+    }
+    if (!status) {
+      setExecuting(false);
+    }
   }
 
   return (

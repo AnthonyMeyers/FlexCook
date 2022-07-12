@@ -7,12 +7,18 @@ const FridgeMenu = ({ className }) => {
 
   return (
     <aside className={className}>
-      <h2 className="fridgemenu__title">Inventory options</h2>
-      <button onClick={() => setShowAddMenu(!showAddMenu)}>
+      <h2 className="fridgemenu__title fridgemenu__item">Inventory options</h2>
+      <button
+        className="fridgemenu__button fridgemenu__item"
+        onClick={() => setShowAddMenu(!showAddMenu)}
+      >
         Add items to list
       </button>
       {showAddMenu && <MenuAddItem />}
-      <button onClick={() => setShowRemoveMenu(!showRemoveMenu)}>
+      <button
+        className="fridgemenu__button fridgemenu__item"
+        onClick={() => setShowRemoveMenu(!showRemoveMenu)}
+      >
         Remove item from list
       </button>
       {showRemoveMenu && <MenuRemoveItem />}

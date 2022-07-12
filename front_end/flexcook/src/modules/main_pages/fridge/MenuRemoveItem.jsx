@@ -25,18 +25,25 @@ const MenuRemoveItem = () => {
 
   return (
     <>
-      {ingredientData && ingredientData.length > 0 && (
-        <Select
-          styles={customStylesSelect}
-          className="fridgemenu__select"
-          onChange={(choice) => setRemoveItem(choice.value)}
-          options={ingredientData.map(({ id, igtInv: { igtName } }) => ({
-            value: id,
-            label: igtName,
-          }))}
-        ></Select>
-      )}
-      <button onClick={handleRemoveitemClick}>remove item</button>
+      <div className="fridgemenu__block">
+        {ingredientData && ingredientData.length > 0 && (
+          <Select
+            styles={customStylesSelect}
+            className="fridgemenu__block__select fridgemenu__item"
+            onChange={(choice) => setRemoveItem(choice.value)}
+            options={ingredientData.map(({ id, igtInv: { igtName } }) => ({
+              value: id,
+              label: igtName,
+            }))}
+          ></Select>
+        )}
+        <button
+          className="fridgemenu__block__button fridgemenu__item"
+          onClick={handleRemoveitemClick}
+        >
+          remove item
+        </button>
+      </div>
     </>
   );
 };

@@ -24,18 +24,25 @@ const MenuAddItem = () => {
   }
   return (
     <>
-      {ingredientData && ingredientData.length > 0 && (
-        <Select
-          styles={customStylesSelect}
-          className="fridgemenu__select"
-          onChange={(choice) => setNewItem(choice.value)}
-          options={ingredientData.map(({ id, igtName }) => ({
-            value: id,
-            label: igtName,
-          }))}
-        ></Select>
-      )}
-      <button onClick={handleAdditemButton}>Add item</button>
+      <div className="fridgemenu__block">
+        {ingredientData && ingredientData.length > 0 && (
+          <Select
+            styles={customStylesSelect}
+            className="fridgemenu__block__select fridgemenu__item"
+            onChange={(choice) => setNewItem(choice.value)}
+            options={ingredientData.map(({ id, igtName }) => ({
+              value: id,
+              label: igtName,
+            }))}
+          ></Select>
+        )}
+        <button
+          className="fridgemenu__block__button fridgemenu__item"
+          onClick={handleAdditemButton}
+        >
+          Add item
+        </button>
+      </div>
     </>
   );
 };
