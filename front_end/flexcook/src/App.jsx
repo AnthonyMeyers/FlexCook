@@ -7,7 +7,6 @@ function App() {
     <>
       <div className="fullpage">
         <Header />
-
         <Routing />
       </div>
     </>

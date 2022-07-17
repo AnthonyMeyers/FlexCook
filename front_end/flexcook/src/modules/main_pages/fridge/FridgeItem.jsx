@@ -1,6 +1,7 @@
 import { useUpdateInventoryCountMutation } from "../../../data/ingredientapi";
 import { useState } from "react";
-const FridgeItem = ({ name, id, count, useMessaging }) => {
+
+const FridgeItem = ({ name, id, count, useMessaging, draggable }) => {
   const [executing, setExecuting] = useState(false);
   //API mutation to change item counts
   const [changeCountItem] = useUpdateInventoryCountMutation();
@@ -32,21 +33,36 @@ const FridgeItem = ({ name, id, count, useMessaging }) => {
       setExecuting(false);
     }
   }
+  function drag(e) {
+    if (e.target.id === "test" + id) {
+      e.dataTransfer.setData("text", e.target.id);
+    }
+  }
 
   return (
     <li
       className={executing ? "fridgeitem disabled" : "fridgeitem"}
       onClick={handleCountClick}
+      draggable={draggable}
+      id={"test" + id}
+      onDragStart={drag}
     >
-      <div className="fridgeitem__texture"></div>
-      <h3 className="fridgeitem__title">{name.substr(0, 8)}</h3>
-      <span className="fridgeitem__counter">{count}</span>
+      <div className="fridgeitem__texture" draggable="false"></div>
+      <h3 className="fridgeitem__title" draggable="false">
+        {name.substr(0, 8)}
+      </h3>
+      <span className="fridgeitem__counter" draggable="false">
+        {count}
+      </span>
       <button
+        draggable="false"
         id="remove-item"
         className="fridgeitem__button"
         onClick={handleCountClick}
       >
-        <span className="fridgeitem__button__text">minus</span>
+        <span className="fridgeitem__button__text" draggable="false">
+          minus
+        </span>
       </button>
     </li>
   );

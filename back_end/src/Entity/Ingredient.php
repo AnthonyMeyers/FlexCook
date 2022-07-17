@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\IngredientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use app\filter\AddItemsFilter;
+
 
 /**
  * @ApiResource(
@@ -15,6 +18,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *  denormalizationContext={"groups"={"Ingredient:write"}}
  * )
  * @ORM\Entity(repositoryClass=IngredientRepository::class)
+ * @ApiFilter(AddItemsFilter::class)
  */
 class Ingredient
 {
@@ -30,7 +34,7 @@ class Ingredient
     /**
      * @ORM\Column(type="string", length=200)
      * @Groups({"Ingredient:read", "Ingredient:write"})
-     * @Groups({"Inventory:read", "Inventory:write"})
+     * @Groups({"Inventory:read"})
      */
     private $igtName;
 
@@ -54,6 +58,7 @@ class Ingredient
 
     /**
      * @ORM\OneToMany(targetEntity=Inventory::class, mappedBy="igtInv", orphanRemoval=true)
+     * @Groups({"Ingredient:read", "Ingredient:write"})
      */
     private $inventories;
 

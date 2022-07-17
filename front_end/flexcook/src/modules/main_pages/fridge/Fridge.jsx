@@ -8,6 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 const Fridge = () => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [message, setMessage] = useState(null);
+  const [dataLength, setDataLength] = useState(null);
+  const [fixedLength, isFixedLength] = useState(false);
 
   useEffect(() => {
     if (message) {
@@ -23,6 +25,21 @@ const Fridge = () => {
     isSuccess,
   } = useGetIngredientsFromUserQuery(4);
 
+  useEffect(() => {
+    if (ingredientData) {
+      setDataLength(10);
+    }
+  }, [isSuccess]);
+
+  function drop(e) {
+    if (fixedLength !== true) {
+      setDataLength(dataLength + 1);
+      isFixedLength(true);
+    }
+    var data = e.dataTransfer.getData("text");
+    e.target.appendChild(document.getElementById(data));
+  }
+
   return (
     <>
       <FridgeMenu className={activeMenu ? "fridgemenu open" : "fridgemenu"} />
@@ -33,7 +50,7 @@ const Fridge = () => {
       >
         {ingredientData && ingredientData.length > 0 && (
           <div className="container">
-            <ul className="fridge__list">
+            <ul className="fridge__list" onDragOver={(e) => e.preventDefault()}>
               {ingredientData.map(({ id, igtInv: { igtName }, invCnt }) => (
                 <FridgeItem
                   key={id}
@@ -41,8 +58,19 @@ const Fridge = () => {
                   name={igtName}
                   count={invCnt}
                   useMessaging={setMessage}
+                  draggable={true}
                 />
               ))}
+              {dataLength &&
+                new Array(dataLength)
+                  .fill()
+                  .map((value, i) => (
+                    <li
+                      key={i}
+                      className="fridge__list__empty"
+                      onDrop={drop}
+                    ></li>
+                  ))}
             </ul>
           </div>
         )}

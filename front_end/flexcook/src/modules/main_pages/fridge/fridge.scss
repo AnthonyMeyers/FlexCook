@@ -11,6 +11,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    &__empty {
+      position: relative;
+      width: 65px;
+      height: 65px;
+      border-radius: 15px;
+      background: rgb(242, 239, 239);
+    }
   }
 }
 
@@ -28,6 +35,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  user-select: none;
   &__texture {
     display: block;
     position: absolute;
@@ -35,21 +43,25 @@
     aspect-ratio: 4/3;
     top: 0;
     left: 25%;
+    user-select: none;
     &:after {
       content: "\eabe";
       font-family: "icomoon";
       font-size: 30px;
+      user-select: none;
     }
   }
   &__title {
     text-align: center;
     font-size: 12px;
     margin-bottom: 2px;
+    user-select: none;
   }
   &__counter {
     position: absolute;
     left: -5px;
     top: -5px;
+    user-select: none;
   }
   &__button {
     position: absolute;
@@ -58,13 +70,16 @@
     z-index: 2;
     font-size: 10px;
     padding: 0;
+    user-select: none;
 
     &__text {
       display: none;
+      user-select: none;
     }
     &:after {
       content: "\ea0b";
       font-family: "icomoon";
+      user-select: none;
     }
   }
 }

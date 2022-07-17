@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use app\filter\AddItemsFilter;
 
 /**
  * @ApiResource(
@@ -27,6 +28,8 @@ class Inventory
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"Inventory:read"})
+     * @Groups({"Ingredient:read", "Ingredient:write"})
+     *
      */
     private $id;
 
@@ -41,6 +44,7 @@ class Inventory
      * @ORM\ManyToOne(targetEntity=Ingredient::class, inversedBy="inventories")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"Inventory:read", "Inventory:write"})
+     *
      */
     private $igtInv;
 
