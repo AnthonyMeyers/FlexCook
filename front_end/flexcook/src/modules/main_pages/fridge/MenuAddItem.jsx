@@ -5,6 +5,7 @@ import {
 } from "../../../data/ingredientapi";
 import { customStylesSelect } from "../../../helpers/reactselect";
 import { useState } from "react";
+import { useGetIngredientsFromUserQuery } from "../../../data/ingredientapi";
 
 const MenuAddItem = () => {
   const [newItem, setNewItem] = useState(null);
@@ -17,6 +18,8 @@ const MenuAddItem = () => {
     isSuccess,
   } = useGetAllIngredientsQuery();
 
+  const { data: ingredientsUser } = useGetIngredientsFromUserQuery(4);
+
   function handleAdditemButton() {
     if (newItem != null) {
       AddToInventory({ userId: 4, ingredId: newItem });
@@ -25,15 +28,25 @@ const MenuAddItem = () => {
   return (
     <>
       <div className="fridgemenu__block">
-        {ingredientData && ingredientData.length > 0 && (
+        {ingredientData && ingredientData.length > 0 && ingredientsUser && (
           <Select
             styles={customStylesSelect}
             className="fridgemenu__block__select fridgemenu__item"
             onChange={(choice) => setNewItem(choice.value)}
-            options={ingredientData.map(({ id, igtName }) => ({
-              value: id,
-              label: igtName,
-            }))}
+            options={ingredientData
+              .filter((value) =>
+                ingredientsUser.reduce((total, item) => {
+                  return total == false
+                    ? false
+                    : item.igtInv.igtName == value.igtName
+                    ? false
+                    : true;
+                }, true)
+              )
+              .map(({ id, igtName }) => ({
+                value: id,
+                label: igtName,
+              }))}
           ></Select>
         )}
         <button
